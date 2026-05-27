@@ -1,0 +1,200 @@
+﻿@model BookStoreASM5.Models.Book
+
+@{
+    ViewData["Title"] = "Xóa sách";
+}
+
+<div class="container-fluid">
+
+    <!-- PAGE HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+
+        <div>
+
+            <h2 class="fw-bold mb-1 text-danger">
+
+                <i class="fa-solid fa-trash-can me-2"></i>
+                Xóa sách
+
+            </h2>
+
+            <p class="text-muted mb-0">
+                Xác nhận trước khi xóa dữ liệu khỏi hệ thống
+            </p>
+
+        </div>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+
+            <i class="fa-solid fa-arrow-left"></i>
+            Quay lại
+
+        </a>
+
+    </div>
+
+    <!-- WARNING -->
+    <div class="alert alert-danger rounded-4 border-0 shadow-sm p-4 mb-4">
+
+        <div class="d-flex align-items-center">
+
+            <i class="fa-solid fa-triangle-exclamation fs-1 me-3"></i>
+
+            <div>
+
+                <h5 class="fw-bold mb-1">
+                    Cảnh báo xóa dữ liệu
+                </h5>
+
+                <div>
+                    Bạn có chắc chắn muốn xóa cuốn sách này không?
+                    Hành động này không thể hoàn tác.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BOOK CARD -->
+    <div class="bg-white rounded-4 shadow-sm overflow-hidden">
+
+        <div class="row g-0">
+
+            <!-- IMAGE -->
+            <div class="col-lg-4 bg-light d-flex align-items-center justify-content-center p-4">
+
+                <img src="@(string.IsNullOrEmpty(Model.Image) ? "/images/no-image.png" : Model.Image)"
+                     class="img-fluid rounded-4 shadow-sm"
+                     style="max-height: 420px; object-fit: cover;" />
+
+            </div>
+
+            <!-- INFO -->
+            <div class="col-lg-8">
+
+                <div class="p-4 p-lg-5">
+
+                    <!-- CATEGORY -->
+                    <div class="mb-3">
+
+                        <span class="badge bg-primary px-3 py-2 rounded-pill fs-6">
+
+                            <i class="fa-solid fa-layer-group me-1"></i>
+
+                            @Model.Category?.CategoryName
+
+                        </span>
+
+                    </div>
+
+                    <!-- TITLE -->
+                    <h2 class="fw-bold mb-4">
+
+                        @Model.Title
+
+                    </h2>
+
+                    <!-- INFO LIST -->
+                    <div class="row">
+
+                        <!-- AUTHOR -->
+                        <div class="col-md-6 mb-4">
+
+                            <div class="text-muted mb-2">
+
+                                <i class="fa-solid fa-user-pen me-2 text-info"></i>
+                                Tác giả
+
+                            </div>
+
+                            <div class="fw-semibold fs-5">
+
+                                @Model.Author
+
+                            </div>
+
+                        </div>
+
+                        <!-- PRICE -->
+                        <div class="col-md-6 mb-4">
+
+                            <div class="text-muted mb-2">
+
+                                <i class="fa-solid fa-money-bill-wave me-2 text-success"></i>
+                                Giá bán
+
+                            </div>
+
+                            <div class="fw-bold fs-4 text-danger">
+
+                                @Model.Price.ToString("N0") VND
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <div class="mb-4">
+
+                        <div class="text-muted mb-2">
+
+                            <i class="fa-solid fa-align-left me-2 text-secondary"></i>
+                            Mô tả
+
+                        </div>
+
+                        <div class="bg-light rounded-4 p-4 lh-lg text-secondary">
+
+                            @(string.IsNullOrWhiteSpace(Model.Description)
+                                ? "Không có mô tả cho sách này."
+                                : Model.Description)
+
+                        </div>
+
+                    </div>
+
+                    <!-- BUTTON -->
+                    <form asp-action="Delete"
+                          method="post"
+                          class="mt-5">
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-flex flex-wrap gap-3">
+
+                            <!-- DELETE -->
+                            <button type="submit"
+                                    class="btn btn-danger btn-lg px-5">
+
+                                <i class="fa-solid fa-trash me-2"></i>
+                                Xóa sách
+
+                            </button>
+
+                            <!-- CANCEL -->
+                            <a asp-action="Index"
+                               class="btn btn-secondary btn-lg px-5">
+
+                                <i class="fa-solid fa-xmark me-2"></i>
+                                Hủy
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable< BookStoreASM5.Models.Category>
+
+@{
+    ViewData["Title"] = "Danh mục";
+}
+
+<h2>Danh mục sách</h2>
+
+<table class="table table-bordered table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Mã</th>
+            <th>Tên thể loại</th>
+            <th>Số sách</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td>@item.Books.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>

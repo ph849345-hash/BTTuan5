@@ -1,0 +1,136 @@
+﻿@model BookStoreASM5.Models.Book
+
+@{
+    ViewData["Title"] = "Chi tiết sách";
+}
+
+<div class="bg-white rounded-4 shadow-sm p-4 p-lg-5">
+
+    <!-- BREADCRUMB -->
+    <div class="mb-4">
+
+        <a asp-action="Index"
+           class="text-decoration-none text-muted">
+
+            <i class="fa-solid fa-arrow-left me-1"></i>
+            Quay lại danh sách
+
+        </a>
+
+    </div>
+
+    <div class="row g-5 align-items-start">
+
+        <!-- IMAGE -->
+        <div class="col-lg-4 text-center">
+
+            <div class="position-relative">
+
+                <img src="@(string.IsNullOrEmpty(Model.Image) ? "/images/no-image.png" : Model.Image)"
+                     class="img-fluid detail-image"
+                     style="max-height: 520px; object-fit: cover;" />
+
+            </div>
+
+        </div>
+
+        <!-- INFO -->
+        <div class="col-lg-8">
+
+            <!-- CATEGORY -->
+            <div class="mb-3">
+
+                <span class="badge bg-primary px-3 py-2 rounded-pill fs-6">
+
+                    <i class="fa-solid fa-layer-group me-1"></i>
+
+                    @Model.Category?.CategoryName
+
+                </span>
+
+            </div>
+
+            <!-- TITLE -->
+            <h1 class="detail-title mb-3">
+
+                @Model.Title
+
+            </h1>
+
+            <!-- AUTHOR -->
+            <div class="mb-4 text-muted fs-5">
+
+                <i class="fa-solid fa-user-pen me-2 text-primary"></i>
+
+                Tác giả:
+                <strong>@Model.Author</strong>
+
+            </div>
+
+            <!-- PRICE -->
+            <div class="mb-4">
+
+                <span class="display-6 fw-bold text-danger">
+
+                    @Model.Price.ToString("N0") VND
+
+                </span>
+
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="mb-5">
+
+                <h5 class="fw-bold mb-3">
+
+                    <i class="fa-solid fa-circle-info me-2 text-info"></i>
+                    Mô tả sách
+
+                </h5>
+
+                <div class="bg-light rounded-4 p-4 text-secondary lh-lg">
+
+                    @(string.IsNullOrWhiteSpace(Model.Description)
+                        ? "Chưa có mô tả cho cuốn sách này."
+                        : Model.Description)
+
+                </div>
+
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="d-flex flex-wrap gap-3">
+
+                <a asp-action="Edit"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-warning px-4 py-2">
+
+                    <i class="fa-solid fa-pen-to-square me-2"></i>
+                    Chỉnh sửa
+
+                </a>
+
+                <a asp-action="Delete"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-danger px-4 py-2">
+
+                    <i class="fa-solid fa-trash me-2"></i>
+                    Xóa sách
+
+                </a>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary px-4 py-2">
+
+                    <i class="fa-solid fa-house me-2"></i>
+                    Trang chủ
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

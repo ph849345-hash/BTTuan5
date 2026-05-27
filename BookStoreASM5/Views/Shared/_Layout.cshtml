@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - BookStoreASM5</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BookStoreASM5.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+
+        <nav class="navbar navbar-expand-lg modern-navbar shadow-sm">
+
+            <div class="container">
+
+                <!-- LOGO -->
+                <a class="navbar-brand fw-bold"
+                   asp-area=""
+                   asp-controller="Books"
+                   asp-action="Index">
+
+                    <i class="fa-solid fa-book-open-reader me-2"></i>
+
+                    BookStore
+
+                </a>
+
+                <!-- MOBILE BUTTON -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent"
+                        aria-controls="navbarContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <!-- MENU -->
+                <div class="collapse navbar-collapse"
+                     id="navbarContent">
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+
+                        <!-- HOME -->
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Books"
+                               asp-action="Index">
+
+                                <i class="fa-solid fa-house me-1"></i>
+
+                                Trang Chủ
+
+                            </a>
+
+                        </li>
+
+                        <!-- CREATE -->
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Books"
+                               asp-action="Create">
+
+                                <i class="fa-solid fa-plus me-1"></i>
+
+                                Thêm Sách
+
+                            </a>
+
+                        </li>
+
+                        <!-- CATEGORY -->
+                        <li class="nav-item">
+
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Categories"
+                               asp-action="Index">
+
+                                <i class="fa-solid fa-layer-group me-1"></i>
+
+                                Thể Loại
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- MAIN -->
+    <div class="container-fluid py-4">
+
+        <div class="row g-4">
+
+            <!-- SIDEBAR -->
+            <div class="col-lg-3">
+
+                <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+
+                    <h4 class="fw-bold mb-4 text-dark">
+
+                        <i class="fa-solid fa-book me-2 text-primary"></i>
+
+                        Chủ đề sách
+
+                    </h4>
+
+                    @await Component.InvokeAsync("CategoryMenu")
+
+                </div>
+
+            </div>
+
+            <!-- CONTENT -->
+            <div class="col-lg-9">
+
+                <main role="main">
+
+                    @RenderBody()
+
+                </main>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-modern mt-5">
+
+        <div class="container text-center">
+
+            <div class="mb-2 fw-semibold">
+
+                <i class="fa-solid fa-book-open me-2"></i>
+
+                BookStore ASM5
+
+            </div>
+
+            <div class="small text-muted">
+
+                © 2026 - Lập trình Web ASP.NET MVC
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
